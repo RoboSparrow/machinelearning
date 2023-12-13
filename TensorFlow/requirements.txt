@@ -1,0 +1,9 @@
+## tensorflow
+# smaller CPU-only package is also available
+tensorflow-cpu
+## helpers for tutorials
+matplotlib
+numpy
+## depenencies
+# matplotlib: https://stackoverflow.com/questions/77507580/userwarning-figurecanvasagg-is-non-interactive-and-thus-cannot-be-shown-plt-sh
+pyqt5
