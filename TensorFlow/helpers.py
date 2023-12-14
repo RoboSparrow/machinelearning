@@ -1,8 +1,8 @@
-
-
 """
- * https://www.tensorflow.org/tutorials/keras/classification
+ * https://www.tensorflow.org/tutorials/
 """
+import re
+import string
 
 # TensorFlow and tf.keras
 import tensorflow as tf
@@ -12,9 +12,13 @@ import numpy
 from matplotlib import pyplot
 
 
+####
+# image classification helpers
+####
+
 def plot_value_array(i, predictions_array, true_label):
     """
-    https://www.tensorflow.org/tutorials/keras/classification#make_predictions
+     - https://www.tensorflow.org/tutorials/keras/classification#make_predictions
     """
     true_label = true_label[i]
     pyplot.grid(False)
@@ -30,7 +34,7 @@ def plot_value_array(i, predictions_array, true_label):
 
 def plot_image(i, predictions_array, true_label, img, class_names):
     """
-    https://www.tensorflow.org/tutorials/keras/classification#make_predictions
+     - https://www.tensorflow.org/tutorials/keras/classification#make_predictions
     """
     true_label, img = true_label[i], img[i]
     pyplot.grid(False)
@@ -49,3 +53,20 @@ def plot_image(i, predictions_array, true_label, img, class_names):
                                     100 * numpy.max(predictions_array),
                                     class_names[true_label]),
                                     color=color)
+
+####
+# text classification helpers
+####
+
+def custom_standardization(input_data):
+    """
+     - https://www.tensorflow.org/tutorials/keras/text_classification
+
+    As you saw above, the reviews contain various HTML tags like <br />. These tags will not be removed by the default standardizer in the TextVectorization layer (which converts text to lowercase and strips punctuation by default, but doesn't strip HTML).
+    You will write a custom standardization function to remove the HTML.
+    """
+    lowercase = tf.strings.lower(input_data)
+    stripped_html = tf.strings.regex_replace(lowercase, '<br />', ' ')
+    return tf.strings.regex_replace(stripped_html,
+                                    '[%s]' % re.escape(string.punctuation),
+                                  '')
