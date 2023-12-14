@@ -2,6 +2,7 @@
 
 """
  * https://www.tensorflow.org/tutorials/keras/classification
+ * ~/.keras/datasets/fashion-mnist/
 """
 
 # TensorFlow and tf.keras
@@ -11,7 +12,7 @@ import tensorflow as tf
 import numpy
 from matplotlib import pyplot
 
-from helpers_classification_basic import plot_image, plot_value_array
+from helpers import plot_image, plot_value_array
 
 print("TensorFlow version:", tf.__version__)
 
@@ -276,14 +277,43 @@ assert res == test_labels[0]
 # Plot the first X test images, their predicted labels, and the true labels.
 # Color correct predictions in blue and incorrect predictions in red.
 
-num_rows = 5
-num_cols = 3
-num_images = num_rows*num_cols
-pyplot.figure(figsize=(2*2*num_cols, 2*num_rows))
-for i in range(num_images):
-  pyplot.subplot(num_rows, 2*num_cols, 2*i+1)
-  plot_image(i, predictions[i], test_labels, test_images, class_names)
-  pyplot.subplot(num_rows, 2*num_cols, 2*i+2)
-  plot_value_array(i, predictions[i], test_labels)
-pyplot.tight_layout()
+# disabled:
+# num_rows = 5
+# num_cols = 3
+# num_images = num_rows*num_cols
+# pyplot.figure(figsize=(2*2*num_cols, 2*num_rows))
+# for i in range(num_images):
+#   pyplot.subplot(num_rows, 2*num_cols, 2*i+1)
+#   plot_image(i, predictions[i], test_labels, test_images, class_names)
+#   pyplot.subplot(num_rows, 2*num_cols, 2*i+2)
+#   plot_value_array(i, predictions[i], test_labels)
+# pyplot.tight_layout()
+# pyplot.show()
+
+####
+# Use the trained model
+####
+
+# Finally, use the trained model to make a prediction about a single image.
+# Grab an image from the test dataset.
+img = test_images[1]
+
+print('img.shape', img.shape)
+
+# tf.keras models are optimized to make predictions on a batch, or collection, of examples at once. Accordingly, even though you're using a single image, you need to add it to a list:
+# Add the image to a batch where it's the only member.
+img = (numpy.expand_dims(img, 0))
+
+print('img.shape', img.shape)
+
+# Now predict the correct label for this image:
+
+predictions_single = probability_model.predict(img)
+print('predictions_single', predictions_single)
+
+plot_value_array(1, predictions_single[0], test_labels)
+_ = pyplot.xticks(range(10), class_names, rotation=45)
 pyplot.show()
+
+res = numpy.argmax(predictions_single[0])
+print('numpy.argmax(predictions_single[0])', res)
