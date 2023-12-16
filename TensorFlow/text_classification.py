@@ -37,7 +37,7 @@ print("TensorFlow version:", tf.__version__)
 url = "https://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz"
 
 dataset = tf.keras.utils.get_file("aclImdb_v1", url,
-                                    untar=True, cache_dir='.',
+                                    untar=True, cache_dir='./imports',
                                     cache_subdir='')
 
 dataset_dir = os.path.join(os.path.dirname(dataset), 'aclImdb')
@@ -88,21 +88,21 @@ batch_size = 32
 seed = 42
 
 raw_train_ds = tf.keras.utils.text_dataset_from_directory(
-    'aclImdb/train',
+    './imports/aclImdb/train',
     batch_size=batch_size,
     validation_split=0.2,
     subset='training',
     seed=seed)
 
 raw_val_ds = tf.keras.utils.text_dataset_from_directory(
-    'aclImdb/train',
+    './imports/aclImdb/train',
     batch_size=batch_size,
     validation_split=0.2,
     subset='validation',
     seed=seed)
 
 raw_test_ds = tf.keras.utils.text_dataset_from_directory(
-    'aclImdb/test',
+    './imports/aclImdb/test',
     batch_size=batch_size)
 
 # As you can see above, there are 25,000 examples in the training folder,
@@ -366,3 +366,8 @@ examples = [
 
 predictions = export_model.predict(examples)
 print("predictions:", predictions)
+
+#######
+
+saved = export_model.save('exports/text_classification_exported.keras')
+print("saved", saved)
