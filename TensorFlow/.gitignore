@@ -1,5 +1,10 @@
 .venv/
 __pycache__/
 
-# impdb dataset
-aclImdb*
+# imports (train datasets)
+imports/*
+!imports/.gitkeep
+
+# exports (saved models)
+exports/*
+!exports/.gitkeep
