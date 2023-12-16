@@ -6,6 +6,7 @@ import string
 
 # TensorFlow and tf.keras
 import tensorflow as tf
+from tensorflow import keras
 
 # Helper libraries
 import numpy
@@ -58,6 +59,7 @@ def plot_image(i, predictions_array, true_label, img, class_names):
 # text classification helpers
 ####
 
+@keras.saving.register_keras_serializable()
 def custom_standardization(input_data):
     """
      - https://www.tensorflow.org/tutorials/keras/text_classification
