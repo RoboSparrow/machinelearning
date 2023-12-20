@@ -72,3 +72,34 @@ def custom_standardization(input_data):
     return tf.strings.regex_replace(stripped_html,
                                     '[%s]' % re.escape(string.punctuation),
                                   '')
+
+
+####
+# text regression helpers
+####
+
+def plot_loss(history):
+    """
+     - https://www.tensorflow.org/tutorials/keras/regression
+    """
+    pyplot.plot(history.history['loss'], label='loss')
+    pyplot.plot(history.history['val_loss'], label='val_loss')
+    pyplot.ylim([0, 10])
+    pyplot.xlabel('Epoch')
+    pyplot.ylabel('Error [MPG]')
+    pyplot.legend()
+    pyplot.grid(True)
+    # pyplot.show()
+
+
+def plot_horsepower(train_features, train_labels, x, y):
+    """
+     - https://www.tensorflow.org/tutorials/keras/regression
+    """
+    pyplot.scatter(train_features['Horsepower'], train_labels, label='Data')
+    pyplot.plot(x, y, color='k', label='Predictions')
+    pyplot.xlabel('Horsepower')
+    pyplot.ylabel('MPG')
+    pyplot.legend()
+    # pyplot.show()
+
