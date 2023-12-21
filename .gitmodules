@@ -1,0 +1,3 @@
+[submodule "Kann/kann"]
+	path = Kann/kann
+	url = git@github.com:attractivechaos/kann.git
