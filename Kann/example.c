@@ -2,6 +2,8 @@
  * A complete example
  *
  * This example learns to count the number of "1" bits in an integer (i.e. popcount):
+ *
+ * - see also: https://github.com/attractivechaos/kann/blob/master/doc/01user.md
  */
 
 // to compile and run: gcc -O2 example.c kann.c kautodiff.c -lm && ./a.out
