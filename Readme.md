@@ -1,3 +1,7 @@
+This is tutorial stuff I collected while looking into machinelearning
+
+----
+
 # Libraries
 
 * https://www.tensorflow.org/
