@@ -53,7 +53,6 @@ regression: predict value
 
  * https://archive.ics.uci.edu/datasets
 
-
 ---
 
 >Loss is a measure of performance of a model. The lower, the better. When learning, the model aims to get the lowest loss possible.
